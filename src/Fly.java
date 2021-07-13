@@ -33,17 +33,30 @@ public class Fly {
     // Object method overrides
     public String toString() {
         if (this.mass == 0) {
-            return "I’m dead, but I used to be a fly with a speed of " + this.mass + ".";
+            return String.format("I’m dead, but I used to be a fly with a speed of %.2f.",this.speed);
         } else {
             return String.format("I’m a speedy fly with %.2f speed and %.2f mass.",this.speed,this.mass);
         }
     }
 
+    // Methods
+    public void grow(int foodMass) {
+        for (int i = 0; i < foodMass; i++) {
+            this.mass += 1;
+            if (this.mass <= 20) {
+                this.speed += 1;
+            }
+            else {
+                this.speed -= 0.5;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Fly myFly1 = new Fly();
-        Fly myFly2 = new Fly();
-        myFly2.setMass(56);
+        Fly myFly2 = new Fly(19);
+        myFly2.grow(60);
+        System.out.println(myFly2.getSpeed());
         System.out.println(myFly2.getMass());
-        System.out.println(myFly2.toString());
     }
 }
