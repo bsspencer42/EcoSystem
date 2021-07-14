@@ -28,18 +28,34 @@ public class Frog {
     // Object method overrides
 
     // Methods
+    public void grow(){
+        grow(1);
+    }
     public void grow(int numMonths){
-        for (int i = 0; i < numMonths; i++) {
-            this.age += 1;
-            if (this.age <= 12) {
-                this.tongueSpeed += 1;
+        int previousAge = this.age;
+        this.age += numMonths;
+
+        if (previousAge <= 12) {
+            if (this.age > 12) {
+                tongueSpeed += 12 - previousAge;
             }
-            else if (this.age > 30) {
-                if (this.tongueSpeed > 5){
-                    this.tongueSpeed -= 1;
-                }
+            else {
+                tongueSpeed += this.age - previousAge;
             }
         }
+        if (this.age > 30) {
+            if (previousAge < 30) {
+                tongueSpeed -= this.age - 30;
+            }
+            else {
+                tongueSpeed -= this.age - previousAge;
+            }
+        }
+        // Correct tongueSpeed if less than 5
+        if (tongueSpeed < 5){
+            tongueSpeed = 5;
+        }
+        // Update froglet variable
         if (this.age >= 1 && this.age < 7){
             isFroglet = true;
         }
@@ -47,16 +63,14 @@ public class Frog {
             isFroglet = false;
         }
     }
-    public void grow(){
-        this.grow(1);
-    }
 
 
     public static void main(String[] args) {
-        Frog myFrog1 = new Frog("Tom",6,10);
+        Frog myFrog1 = new Frog("Tom",30,50);
         Frog myFrog2 = new Frog("Brad");
         System.out.println(myFrog1.isFroglet);
+        System.out.println("Froglet = " + myFrog1.isFroglet + "\nTongueSpeed = " + myFrog1.tongueSpeed);
         myFrog1.grow();
-        System.out.println(myFrog1.isFroglet);
+        System.out.println("Froglet = " + myFrog1.isFroglet + "\nTongueSpeed = " + myFrog1.tongueSpeed);
     }
 }
