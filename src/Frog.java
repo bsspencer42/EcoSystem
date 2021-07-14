@@ -4,7 +4,7 @@ public class Frog {
     private int age;
     private double tongueSpeed;
     private boolean isFroglet;
-    public static String species = "Rare Pepe";
+    private static String species = "Rare Pepe";
 
     // Constructors
     public Frog(String name, int age, double tongueSpeed){
@@ -25,7 +25,25 @@ public class Frog {
         this(name, 5, 5);
     }
 
+    // Getters
+    public String getSpecies(){
+        return this.species;
+    }
+
+    // Setters
+    public void setSpecies(String species){
+        this.species = species;
+    }
+
     // Object method overrides
+    public String toString() {
+        if (this.isFroglet) {
+            return String.format("My name is %s and I’m a rare froglet! I’m %d months old and my tongue has a speed of %.2f.",this.name,this.age,this.tongueSpeed);
+        }
+        else {
+            return String.format("My name is %s and I’m a rare frog! I’m %d months old and my tongue has a speed of %.2f.",this.name,this.age,this.tongueSpeed);
+        }
+    }
 
     // Methods
     public void grow(){
@@ -63,7 +81,6 @@ public class Frog {
             isFroglet = false;
         }
     }
-
     public void eat(Fly myFly) {
         // Return if dead
         if (myFly.isDead())
@@ -80,15 +97,6 @@ public class Frog {
         }
     }
 
-    // Overrides
-    public String toString() {
-        if (this.isFroglet) {
-            return String.format("My name is %s and I’m a rare froglet! I’m %d months old and my tongue has a speed of %.2f.",this.name,this.age,this.tongueSpeed);
-        }
-        else {
-            return String.format("My name is %s and I’m a rare frog! I’m %d months old and my tongue has a speed of %.2f.",this.name,this.age,this.tongueSpeed);
-        }
-    }
 
     public static void main(String[] args) {
         Frog myFrog1 = new Frog("Tom",3,10);
@@ -102,5 +110,8 @@ public class Frog {
         System.out.println("Froglet = " + myFrog1.isFroglet +", Age = " + myFrog1.age + ", TongueSpeed = " + myFrog1.tongueSpeed);
         System.out.println(myFly1.toString());
         System.out.println(myFrog1.toString());
+        System.out.println(myFrog1.getSpecies());
+        myFrog2.setSpecies("Poop Frog");
+        System.out.println(myFrog1.getSpecies());
     }
 }
