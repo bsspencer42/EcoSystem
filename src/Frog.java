@@ -64,13 +64,43 @@ public class Frog {
         }
     }
 
+    public void eat(Fly myFly) {
+        // Return if dead
+        if (myFly.isDead())
+            return;
+        // Fly is caught
+        if (this.tongueSpeed > myFly.getSpeed()) {
+            if (myFly.getMass()/this.age > 0.5)
+                grow();
+            myFly.setMass(0);
+        }
+        // Fly is not caught
+        else{
+            myFly.grow(1);
+        }
+    }
+
+    // Overrides
+    public String toString() {
+        if (this.isFroglet) {
+            return String.format("My name is %s and I’m a rare froglet! I’m %d months old and my tongue has a speed of %.2f.",this.name,this.age,this.tongueSpeed);
+        }
+        else {
+            return String.format("My name is %s and I’m a rare frog! I’m %d months old and my tongue has a speed of %.2f.",this.name,this.age,this.tongueSpeed);
+        }
+    }
 
     public static void main(String[] args) {
-        Frog myFrog1 = new Frog("Tom",30,50);
+        Frog myFrog1 = new Frog("Tom",3,10);
         Frog myFrog2 = new Frog("Brad");
-        System.out.println(myFrog1.isFroglet);
-        System.out.println("Froglet = " + myFrog1.isFroglet + "\nTongueSpeed = " + myFrog1.tongueSpeed);
+        Fly myFly1 = new Fly(5,10);
+        System.out.println(myFly1.toString());
+        System.out.println("Froglet = " + myFrog1.isFroglet +", Age = " + myFrog1.age + ", TongueSpeed = " + myFrog1.tongueSpeed);
         myFrog1.grow();
-        System.out.println("Froglet = " + myFrog1.isFroglet + "\nTongueSpeed = " + myFrog1.tongueSpeed);
+        System.out.println("Froglet = " + myFrog1.isFroglet +", Age = " + myFrog1.age + ", TongueSpeed = " + myFrog1.tongueSpeed);
+        myFrog1.eat(myFly1);
+        System.out.println("Froglet = " + myFrog1.isFroglet +", Age = " + myFrog1.age + ", TongueSpeed = " + myFrog1.tongueSpeed);
+        System.out.println(myFly1.toString());
+        System.out.println(myFrog1.toString());
     }
 }
