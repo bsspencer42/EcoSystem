@@ -41,21 +41,23 @@ public class Fly {
 
     // Methods
     public void grow(int foodMass) {
-        for (int i = 0; i < foodMass; i++) {
-            this.mass += 1;
-            if (this.mass <= 20) {
-                this.speed += 1;
-            }
-            else {
-                this.speed -= 0.5;
-            }
+        if (this.mass + foodMass < 20) {
+            this.speed += foodMass;
         }
+        else if (this.mass >= 20) {
+            this.speed -= 0.5*foodMass;
+        }
+        else {
+            this.speed += 20 - this.mass;
+            this.speed -= (foodMass - (20-this.mass))*0.5;
+        }
+        this.mass += foodMass;
     }
 
     public static void main(String[] args) {
         Fly myFly1 = new Fly();
-        Fly myFly2 = new Fly(19);
-        myFly2.grow(60);
+        Fly myFly2 = new Fly(17,10);
+        myFly2.grow(4);
         System.out.println(myFly2.getSpeed());
         System.out.println(myFly2.getMass());
     }
