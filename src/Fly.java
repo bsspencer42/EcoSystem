@@ -59,12 +59,4 @@ public class Fly {
         return false;
     }
 
-    public static void main(String[] args) {
-        Fly myFly1 = new Fly();
-        Fly myFly2 = new Fly(5,10);
-        myFly2.grow(1);
-        System.out.println(myFly2.toString());
-        System.out.println(myFly2.getSpeed());
-        System.out.println(myFly2.getMass());
-    }
 }

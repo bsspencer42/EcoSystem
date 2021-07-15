@@ -7,6 +7,12 @@ public class Frog {
     private static String species = "Rare Pepe";
 
     // Constructors
+    public Frog(String name){
+        this(name, 5, 5);
+    }
+    public Frog(String name, double ageInYears, double tongueSpeed){
+        this(name, (int) (ageInYears*12),tongueSpeed);
+    }
     public Frog(String name, int age, double tongueSpeed){
         this.name = name;
         this.age = age;
@@ -17,12 +23,6 @@ public class Frog {
         else {
             isFroglet = false;
         }
-    }
-    public Frog(String name, double ageInYears, double tongueSpeed){
-        this(name, (int) (ageInYears*12),tongueSpeed);
-    }
-    public Frog(String name){
-        this(name, 5, 5);
     }
 
     // Getters
@@ -95,23 +95,5 @@ public class Frog {
         else{
             myFly.grow(1);
         }
-    }
-
-
-    public static void main(String[] args) {
-        Frog myFrog1 = new Frog("Tom",3,10);
-        Frog myFrog2 = new Frog("Brad");
-        Fly myFly1 = new Fly(5,10);
-        System.out.println(myFly1.toString());
-        System.out.println("Froglet = " + myFrog1.isFroglet +", Age = " + myFrog1.age + ", TongueSpeed = " + myFrog1.tongueSpeed);
-        myFrog1.grow();
-        System.out.println("Froglet = " + myFrog1.isFroglet +", Age = " + myFrog1.age + ", TongueSpeed = " + myFrog1.tongueSpeed);
-        myFrog1.eat(myFly1);
-        System.out.println("Froglet = " + myFrog1.isFroglet +", Age = " + myFrog1.age + ", TongueSpeed = " + myFrog1.tongueSpeed);
-        System.out.println(myFly1.toString());
-        System.out.println(myFrog1.toString());
-        System.out.println(myFrog1.getSpecies());
-        myFrog2.setSpecies("Poop Frog");
-        System.out.println(myFrog1.getSpecies());
     }
 }
